@@ -9,6 +9,7 @@
 		"@types/prettier": "^2.7.0",
 		"dprint": "^0.31.1",
 		"eslint": "^8.23.0",
+		"graphviz": "^0.0.9",
 		"husky": "^8.0.1",
 		"pinst": "^3.0.0",
 		"prettier": "^2.7.1",
@@ -26,7 +27,8 @@
 		"gaia:dev": "cargo watch -x run -p gaia -w ./apps/gaia",
 		"lint": "turbo run lint --parallel",
 		"logger": "pnpm --filter=./libs/logger",
-		"ui": "pnpm --filter=./apps/ui"
+		"ui": "pnpm --filter=./apps/ui",
+		"graph": "pnpm turbo run build --graph=my-graph.png "
 	},
 	"commitlint": {
 		"extends": [
