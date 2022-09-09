@@ -1,6 +1,5 @@
 packages:
   - 'apps/athena'
   - 'apps/hera'
-  - 'apps/hera2'
   - 'libs/logger'
   - 'libs/ui'
