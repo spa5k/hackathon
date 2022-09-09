@@ -32,6 +32,7 @@ importers:
 
   apps/athena:
     specifiers:
+      '@core/models': workspace:^1.0.0
       '@core/ui': workspace:^0.0.0
       '@rushstack/eslint-patch': ^1.1.4
       '@spa5k/eslint-config': ^0.0.2
@@ -46,6 +47,7 @@ importers:
       typescript: ^4.8.3
       vite: ^3.1.0
     dependencies:
+      '@core/models': link:../../models
       '@core/ui': link:../../libs/ui
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -131,6 +133,14 @@ importers:
       '@types/react': 17.0.49
       '@types/react-dom': 18.0.6
       eslint: 8.23.0
+      typescript: 4.8.3
+
+  models:
+    specifiers:
+      '@types/node': ^18.7.16
+      typescript: ^4.8.3
+    devDependencies:
+      '@types/node': 18.7.16
       typescript: 4.8.3
 
 packages:
