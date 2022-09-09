@@ -1,3 +1,4 @@
-import { info } from './info'
+import { info,logRequest,logError } from './info'
 
-export { info }
+
+export { info, logRequest,logError}
