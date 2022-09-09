@@ -1,16 +1,9 @@
 // use crate::routes::health_check;
-use crate::{
-    configuration::{DatabaseSettings, Settings},
-    routes::health_check,
-};
+use crate::routes::{health_check,get_pokemon};
 
 use actix_web::dev::Server;
-use actix_web::web::Data;
 use actix_web::{web, App, HttpServer};
-use sqlx::postgres::PgPoolOptions;
-use sqlx::PgPool;
 use std::net::TcpListener;
-use tracing_actix_web::TracingLogger;
 
 pub struct Application {
     port: u16,
@@ -18,16 +11,11 @@ pub struct Application {
 }
 
 impl Application {
-    pub async fn build(configuration: Settings) -> Result<Self, anyhow::Error> {
-        let connection_pool = get_connection_pool(&configuration.database);
-
-        let address = format!(
-            "{}:{}",
-            configuration.application.host, configuration.application.port
-        );
+    pub async fn build() -> Result<Self, anyhow::Error> {
+        let address = format!("{}:{}", "127.0.0.1", "8080");
         let listener = TcpListener::bind(&address)?;
         let port = listener.local_addr().unwrap().port();
-        let server = run(listener, connection_pool).await?;
+        let server = run(listener).await?;
 
         Ok(Self { port, server })
     }
@@ -41,23 +29,14 @@ impl Application {
     }
 }
 
-pub fn get_connection_pool(configuration: &DatabaseSettings) -> PgPool {
-    PgPoolOptions::new()
-        .connect_timeout(std::time::Duration::from_secs(2))
-        .connect_lazy_with(configuration.with_db())
-}
-
-pub async fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Error> {
-    let db_pool = Data::new(db_pool);
-
-    let server = HttpServer::new(move || {
-        App::new()
-            .wrap(TracingLogger::default())
-            .route("/health_check", web::get().to(health_check))
-            .app_data(db_pool.clone())
-    })
-    .listen(listener)?
-    .run();
+pub async fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
+    let server =
+        HttpServer::new(move || App::new()
+        .route("/health_check", web::get().to(health_check))
+        .route("/get_pokemon", web::get().to(get_pokemon)))
+            .listen(listener)?
+            .run();
+    println!("Server started in http://localhost:8080");
 
     Ok(server)
 }
