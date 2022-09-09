@@ -1,35 +1,38 @@
-import { Button, Title, BootCard, Header, Footer } from '@core/ui'
-import type { Pokemon } from '@core/models'
-import React, { useState, useEffect } from 'react';
+/* eslint-disable @typescript-eslint/no-floating-promises */
+import { Pokemon } from '@core/models'
+import { getPokemons } from '@core/queries'
+import { BootCard, Footer, Header, Title } from '@core/ui'
+import { useEffect, useState } from 'react'
 import './App.css'
-import axios from 'axios';
-
-interface ApiResponse {
-	abilities: [{ability: {name: string}}];
-	sprites: { front_default: string, back_default: string };
-	name: string;
-}
 
 function App(): JSX.Element {
-
-	const [response, setResponse] = useState<ApiResponse | null>(null);
+	const [response, setResponse] = useState<Pokemon>()
 
 	useEffect(() => {
-	  axios
-		.get<ApiResponse>('https://pokeapi.co/api/v2/pokemon/2')
-		.then((response) => setResponse(response.data));
-	}, []);
-
-	const x: Pokemon = {
-		abilities: [{ ability: { name: 'nice' } }],
+		getPokemons()
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(
+						`This is an HTTP error: The status is ${response.status}`,
+					)
+				}
+				return response.json()
+			})
+			.then((actualData) => setResponse(actualData))
+			.catch((err) => {
+				console.log(err.message)
+			})
+	}, [])
+	if (!response) {
+		return <p>Loading..</p>
 	}
 
 	return (
 		<div className='App'>
-			<Header title="Main Athena app" />
-			<Title title="Pokemon" subtitle="Players" />
-			<BootCard pokemonData={response}  />
-			<Footer copyright="&copy; 2022. Designed by Hackathon " />
+			<Header title='Main Athena app' />
+			<Title title='Pokemon' subtitle='Players' />
+			<BootCard pokemonData={response} />
+			<Footer copyright='&copy; 2022. Designed by Hackathon ' />
 		</div>
 	)
 }

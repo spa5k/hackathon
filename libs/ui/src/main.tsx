@@ -1,9 +1,9 @@
+import { BootCard } from './bootcard'
 import { Button } from './button'
-import Title  from './title'
-import { BootCard }  from './bootcard'
-import { Header }  from './header'
-import { Footer }  from './footer'
+import { Footer } from './footer'
+import { Header } from './header'
+import Title from './title'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-export { Button, Title, BootCard, Header, Footer }
+export { BootCard, Button, Footer, Header, Title }

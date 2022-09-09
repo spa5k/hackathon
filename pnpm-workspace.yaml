@@ -4,3 +4,4 @@ packages:
   - 'libs/logger'
   - 'libs/ui'
   - 'models'
+  - 'libs/queries'

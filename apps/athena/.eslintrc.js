@@ -9,5 +9,8 @@ module.exports = {
 	parserOptions: { tsconfigRootDir: __dirname },
 	rules: {
 		'no-console': 'off',
+		'@typescript-eslint/typedef': 'off',
+		'security-node/detect-crlf': 'off',
+		' @typescript-eslint/explicit-function-return-type': 'off',
 	},
 }

@@ -1,4 +1,4 @@
-const withTM = require('next-transpile-modules')(['@core/ui'])
+const withTM = require('next-transpile-modules')(['@core/ui', '@core/models', '@core/queries'])
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

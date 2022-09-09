@@ -5,18 +5,16 @@ export const info = (str: string): void => {
 const winston = require('winston')
 const consoleTransport = new winston.transports.Console()
 const myWinstonOptions = {
-	transports: [consoleTransport]
+	transports: [consoleTransport],
 }
 const logger = new winston.createLogger(myWinstonOptions)
 
-export  const  logRequest=(req, res, next)=> {
+export const logRequest = (req, res, next) => {
 	logger.info(req.url)
 	next()
 }
 
-
-export const logError=(err, req, res, next)=> {
+export const logError = (err, req, res, next) => {
 	logger.error(err)
 	next()
 }
-

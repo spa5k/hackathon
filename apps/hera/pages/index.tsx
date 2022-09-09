@@ -1,9 +1,33 @@
-import { Button } from '@core/ui'
+import { Pokemon } from '@core/models'
+import { getPokemons } from '@core/queries'
+import { BootCard, Footer, Header, Title } from '@core/ui'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+	const [response, setResponse] = useState<Pokemon>()
+
+	useEffect(() => {
+		getPokemons()
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(
+						`This is an HTTP error: The status is ${response.status}`,
+					)
+				}
+				return response.json()
+			})
+			.then((actualData) => setResponse(actualData))
+			.catch((err) => {
+				console.log('err', err.message)
+			})
+	}, [])
+	if (!response) {
+		return <p>Loading..</p>
+	}
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -12,13 +36,10 @@ const Home: NextPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className={styles.main}>
-				<h1 className={styles.title}>
-					Welcome to <a href='https://nextjs.org'>Next.js!</a>
-				</h1>
-			</main>
-
-			<Button />
+			<Header title='Hera NextJs app' />
+			<Title title='Pokemon' subtitle='Players' />
+			<BootCard pokemonData={response} />
+			<Footer copyright='&copy; 2022. Designed by Hackathon ' />
 		</div>
 	)
 }

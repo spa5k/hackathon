@@ -9,6 +9,6 @@ module.exports = {
 	parserOptions: { tsconfigRootDir: __dirname },
 	rules: {
 		'no-console': 'off',
-		"@typescript-eslint/naming-convention": "warn"
+		'@typescript-eslint/naming-convention': 'warn',
 	},
 }

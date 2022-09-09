@@ -17,9 +17,11 @@ All packages/apps needs to be started with `@core`/package-name in order to keep
 ```sh
 pnpm install
 ```
+
 To run the @gaia crate
+
 ```sh
-cargo install cargo-watch 
+cargo install cargo-watch
 ```
 
 ## Usage
@@ -60,13 +62,13 @@ cargo install cargo-watch
 pnpm <package> <command>
 ```
 
-  Example -
+Example -
 
-  Run lint in Athena
+Run lint in Athena
 
-  ```sh
-  pnpm athena lint
-  ```
+```sh
+pnpm athena lint
+```
 
 ## Authors
 
