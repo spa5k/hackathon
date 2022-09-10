@@ -1,45 +1,30 @@
-import { Pokemon } from '@core/models'
-import { Col, Row } from 'reactstrap'
+import { PokemonResourceList } from '@core/models'
 
-export function BootCard({ pokemonData }: { pokemonData: Pokemon }): JSX.Element {
-	if (!pokemonData) {
+export function BootCard({ pokemonList, handleCurrentPokemon }: { pokemonList: PokemonResourceList, handleCurrentPokemon: any }): JSX.Element {
+	if (!pokemonList) {
 		return <p>No data</p>
 	}
 	return (
-		<Row>
-			<Col sm='6'>
-				{pokemonData && (
-					<div className='card mb-3 '>
-						<img src={pokemonData.sprites?.front_default} className='card-img-top' alt={`${pokemonData.name} image`} width={150} height={200} />
-						<div className='card-body'>
-							<h3 className='card-title'>{pokemonData.name}</h3>
-							<p className='card-text'>
-								This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-							</p>
-							<p className='card-text'>
-								<small className='text-muted'>Last updated 3 mins ago</small>
-							</p>
-						</div>
-					</div>
-				)}
-			</Col>
+    <div className="container px-4 px-lg-5">
 
-			<Col sm='6'>
-				{pokemonData && (
-					<div className='card mb-3'>
-						<img src={pokemonData.sprites?.back_default} className='card-img-top' alt={pokemonData.name + ' image'} width={150} height={200} />
-						<div className='card-body'>
-							<h3 className='card-title'>{pokemonData.name}</h3>
-							<p className='card-text'>
-								This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-							</p>
-							<p className='card-text'>
-								<small className='text-muted'>Last updated 3 mins ago</small>
-							</p>
-						</div>
-					</div>
-				)}
-			</Col>
-		</Row>
+        <hr/>
+        
+        <div className="row gx-4 gx-lg-5">
+
+            {
+                pokemonList && pokemonList.results.map((pokemonData, key) => (
+                    <div className="col-md-4 mb-5" key={key}>
+                        <div className="card h-100">
+                            <div className="card-body">
+                                <h2 className="card-title">{pokemonData.name.toUpperCase()}</h2>
+                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            </div>
+                            <div className="card-footer"><a className="btn btn-primary btn-sm" href="#!" onClick={() => { handleCurrentPokemon(key+1) }}>More Info</a></div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
 	)
 }

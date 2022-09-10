@@ -1,13 +1,7 @@
-import React from 'react'
-import { Button, Container } from 'reactstrap'
-
 export function Footer({ copyright }): JSX.Element {
 	return (
-		<Container>
-			<div className='fixed-bottom'>
-				<hr className='my-4' />
-				<p className='lead'>{copyright}</p>
-			</div>
-		</Container>
+		<footer className="py-5 bg-dark">
+            <div className="container px-4 px-lg-5"><p className="m-0 text-center text-white">{copyright}</p></div>
+        </footer>
 	)
 }

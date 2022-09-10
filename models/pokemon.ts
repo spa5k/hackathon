@@ -20,6 +20,7 @@ export interface Pokemon {
 	stats?: Stat[]
 	types?: Type[]
 	weight?: number
+	number?:number
 }
 
 export interface Species {

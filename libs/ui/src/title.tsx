@@ -9,7 +9,7 @@ const Title: FC<ITitleProps> = ({ title, subtitle }) => {
 	return (
 		<>
 			<h1>{title}</h1>
-			<h2>{subtitle}</h2>
+			<h4>{subtitle}</h4>
 		</>
 	)
 }
