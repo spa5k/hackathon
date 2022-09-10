@@ -7,4 +7,4 @@ import Title from './title'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-export { BootCard, Button, Footer, Header, Title, Jumbrotron }
+export { BootCard, Button, Footer, Header, Jumbrotron, Title }

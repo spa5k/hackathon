@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { Pokemon, PokemonResourceList } from '@core/models'
-import { getPokemons, getPokemonResourceList } from '@core/queries'
+import { getPokemonResourceList, getPokemons } from '@core/queries'
 import { BootCard, Footer, Header, Jumbrotron, Title } from '@core/ui'
 import { useEffect, useState } from 'react'
 import './App.css'
@@ -8,7 +8,7 @@ import './App.css'
 function App(): JSX.Element {
 	const [response, setResponse] = useState<Pokemon>()
 	const [responseList, setResponseList] = useState<PokemonResourceList>()
-	const [currentPokemon, setCurrentPokemon] = useState(2);
+	const [currentPokemon, setCurrentPokemon] = useState(2)
 
 	useEffect(() => {
 		getPokemons(currentPokemon)
@@ -42,11 +42,11 @@ function App(): JSX.Element {
 			})
 	}, [])
 
-	if (!response) {
+	if (!response || !responseList) {
 		return <p>Loading..</p>
 	}
 
-	const handleCurrentPokemon = (value: number) : void => {
+	const handleCurrentPokemon = (value: number): void => {
 		setCurrentPokemon(value)
 	}
 

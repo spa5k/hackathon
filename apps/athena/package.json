@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && vite build",
+		"build": "vite build",
 		"preview": "vite preview",
 		"lint": "eslint ."
 	},
@@ -20,7 +20,7 @@
 		"@spa5k/eslint-config": "^0.0.2",
 		"@types/babel__core": "^7.1.19",
 		"@types/eslint": "^8.4.6",
-		"@types/react": "^18.0.18",
+		"@types/react": "^18.0.19",
 		"@types/react-dom": "^18.0.6",
 		"@vitejs/plugin-react": "^2.1.0",
 		"eslint": "^8.23.0",
