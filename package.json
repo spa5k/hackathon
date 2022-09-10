@@ -24,7 +24,7 @@
 		"hera": "pnpm --filter=./apps/hera",
 		"hera:dev": "turbo run dev --scope=@core/hera",
 		"format": "pnpm dprint fmt",
-		"gaia:dev": "cargo watch -x run -p gaia -w ./apps/gaia",
+		"gaia:dev": "cargo run -p gaia",
 		"lint": "turbo run lint --parallel",
 		"logger": "pnpm --filter=./libs/logger",
 		"ui": "pnpm --filter=./apps/ui",

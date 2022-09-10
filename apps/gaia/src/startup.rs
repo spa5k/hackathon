@@ -1,5 +1,5 @@
 // use crate::routes::health_check;
-use crate::routes::{health_check,get_pokemon};
+use crate::routes::{get_pokemon, health_check};
 
 use actix_web::dev::Server;
 use actix_web::{web, App, HttpServer};
@@ -30,12 +30,14 @@ impl Application {
 }
 
 pub async fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
-    let server =
-        HttpServer::new(move || App::new()
-        .route("/health_check", web::get().to(health_check))
-        .route("/get_pokemon", web::get().to(get_pokemon)))
-            .listen(listener)?
-            .run();
+    let server = HttpServer::new(move || {
+        App::new()
+            .route("/health_check", web::get().to(health_check))
+            .service(get_pokemon)
+            // .route("/get_pokemon/{pokemon}", web::get().to(get_pokemon))
+    })
+    .listen(listener)?
+    .run();
     println!("Server started in http://localhost:8080");
 
     Ok(server)
