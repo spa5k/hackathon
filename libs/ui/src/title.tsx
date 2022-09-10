@@ -8,8 +8,8 @@ interface ITitleProps {
 const Title: FC<ITitleProps> = ({ title, subtitle }) => {
 	return (
 		<>
-			<h1>{title}</h1>
-			<h4>{subtitle}</h4>
+			<h1 className='text-center'>{title}</h1>
+			<h4 className='text-center'>{subtitle}</h4>
 		</>
 	)
 }

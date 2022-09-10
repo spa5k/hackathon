@@ -52,8 +52,8 @@ function App(): JSX.Element {
 
 	return (
 		<div className='App'>
-			<Header title='Pokemon hackathon' />
-			<Jumbrotron pokemonData={response} handleCurrentPokemon={handleCurrentPokemon} highlightText='This call to action card is a great place to showcase some important information or display a clever tagline!' />
+			<Header title='Pokemon hackathon ( ReactJS )' />
+			<Jumbrotron pokemonData={response} handleCurrentPokemon={handleCurrentPokemon} highlightText='ReactJS is used to create this application' />
 			<Title title='Pokemon' subtitle='Click here to check pokemon' />
 			<BootCard pokemonList={responseList} handleCurrentPokemon={handleCurrentPokemon} />
 			<Footer copyright='&copy; 2022. Designed by Hackathon ' />
