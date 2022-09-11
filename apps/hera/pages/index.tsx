@@ -3,49 +3,12 @@ import { Pokemon, PokemonResourceList } from '@core/models'
 import { getPokemonResourceList, getPokemons } from '@core/queries'
 import { BootCard, Header, Jumbrotron, Title } from '@core/ui'
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
-	const [response, setResponse] = useState<Pokemon>()
-	const [responseList, setResponseList] = useState<PokemonResourceList>()
+// @ts-ignore
+const Home: NextPage = ({ pokemons, pokemon }: { pokemons: PokemonResourceList; pokemon: Pokemon }) => {
 	const [currentPokemon, setCurrentPokemon] = useState(2)
-
-	useEffect(() => {
-		getPokemons(currentPokemon)
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error(
-						`This is an HTTP error: The status is ${response.status}`,
-					)
-				}
-				return response.json()
-			})
-			.then((actualData) => setResponse(actualData))
-			.catch((err) => {
-				console.log(err.message)
-			})
-	}, [currentPokemon])
-
-	useEffect(() => {
-		getPokemonResourceList()
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error(
-						`This is an HTTP error: The status is ${response.status}`,
-					)
-				}
-				return response.json()
-			})
-			.then((actualData) => setResponseList(actualData))
-			.catch((err) => {
-				console.log(err.message)
-			})
-	}, [])
-
-	if (!response) {
-		return <p>Loading..</p>
-	}
 
 	const handleCurrentPokemon = (value: number): void => {
 		setCurrentPokemon(value)
@@ -54,10 +17,21 @@ const Home: NextPage = () => {
 	return (
 		<div className={styles.container}>
 			<Header title='Pokemon hackathon (NextJS)' />
-			<Jumbrotron pokemonData={response} handleCurrentPokemon={handleCurrentPokemon} highlightText='NextJS is used to create this application' />
+			<Jumbrotron pokemonData={pokemon} handleCurrentPokemon={handleCurrentPokemon} highlightText='NextJS is used to create this application' />
 			<Title title='Pokemon' subtitle='Click here to check pokemon' />
-			<BootCard pokemonList={responseList as PokemonResourceList} handleCurrentPokemon={handleCurrentPokemon} />
+			<BootCard pokemonList={pokemons} handleCurrentPokemon={handleCurrentPokemon} />
 		</div>
 	)
 }
 export default Home
+
+export async function getServerSideProps() {
+	// Fetch data from external API
+	const res = await getPokemons(1)
+	const pokemon = await res.json()
+	const res1 = await getPokemonResourceList()
+	const pokemons = await res1.json()
+
+	// Pass data to the page via props
+	return { props: { pokemon, pokemons } }
+}
