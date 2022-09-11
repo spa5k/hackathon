@@ -10,7 +10,7 @@
 	"json": {},
 	"markdown": {},
 	"toml": {},
-	"includes": ["**/*.{ts,tsx,js,jsx,cjs,mjs,json,md,toml}"],
+	"includes": ["**/*.{ts,tsx,js,jsx,cjs,mjs,json,md,toml,rs}"],
 	"excludes": [
 		"**/node_modules",
 		"**/*-lock.json",
@@ -20,10 +20,14 @@
 		"pnpm-lock.yaml",
 		"**/target"
 	],
+	"rustfmt": {
+		"brace_style": "AlwaysNextLine"
+	},
 	"plugins": [
 		"https://plugins.dprint.dev/typescript-0.60.0.wasm",
 		"https://plugins.dprint.dev/json-0.13.2.wasm",
 		"https://plugins.dprint.dev/markdown-0.11.3.wasm",
-		"https://plugins.dprint.dev/toml-0.5.3.wasm"
+		"https://plugins.dprint.dev/toml-0.5.3.wasm",
+		"https://plugins.dprint.dev/rustfmt-0.6.2.json@886c6f3161cf020c2d75160262b0f56d74a521e05cfb91ec4f956650c8ca76ca"
 	]
 }
