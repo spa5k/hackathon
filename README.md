@@ -1,6 +1,7 @@
 # PNPM Typescript Rust Monorepo
 
 Pnpm workspaces based monorepo with essential configs and things.
+![enter image description here](graph.png)
 
 ## Info -
 

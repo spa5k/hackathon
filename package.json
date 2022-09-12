@@ -7,8 +7,8 @@
 		"@types/eslint": "^8.4.6",
 		"@types/node": "^18.7.16",
 		"@types/prettier": "^2.7.0",
-		"dprint": "^0.31.1",
-		"eslint": "^8.23.0",
+		"dprint": "^0.32.1",
+		"eslint": "^8.23.1",
 		"graphviz": "^0.0.9",
 		"husky": "^8.0.1",
 		"pinst": "^3.0.0",
@@ -28,7 +28,8 @@
 		"lint": "turbo run lint --parallel",
 		"logger": "pnpm --filter=./libs/logger",
 		"ui": "pnpm --filter=./apps/ui",
-		"graph": "pnpm turbo run build --graph=my-graph.png "
+		"graph": "pnpm turbo run build --graph=graph.png",
+		"types": "turbo run types --parallel --no-cache"
 	},
 	"commitlint": {
 		"extends": [
